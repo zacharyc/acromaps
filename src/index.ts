@@ -6,6 +6,8 @@ import { authPlugin } from "./plugins/auth.js";
 import { healthRoutes } from "./routes/health.js";
 import { authRoutes } from "./routes/auth.js";
 import { eventRoutes } from "./routes/events.js";
+import { configRoutes } from "./routes/config.js";
+import { geocodeRoutes } from "./routes/geocode.js";
 
 const fastify = Fastify({
   logger: {
@@ -37,6 +39,8 @@ async function buildApp() {
   await fastify.register(healthRoutes);
   await fastify.register(authRoutes);
   await fastify.register(eventRoutes);
+  await fastify.register(configRoutes);
+  await fastify.register(geocodeRoutes);
 
   return fastify;
 }

@@ -354,6 +354,40 @@ section h3 {
   color: var(--text-light);
 }
 
+/* Map Section */
+.map-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-section h3 {
+  font-size: 1.75rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.event-map {
+  width: 100%;
+  height: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 500px;
+  border-radius: 1rem;
+  background: var(--background-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  border: 1px solid var(--border);
+}
+
 /* Footer */
 .footer {
   margin-top: auto;

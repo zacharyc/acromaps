@@ -17,6 +17,9 @@ const envSchema = z.object({
   // Auth
   JWT_SECRET: z.string().min(32),
   FRONTEND_URL: z.string().url().default("http://localhost:5173"),
+
+  // Mapbox
+  MAPBOX_ACCESS_TOKEN: z.string().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);
