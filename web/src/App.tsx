@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { EventMap } from "./components/EventMap";
+import { AuthModal } from "./components/AuthModal";
+import { CreateEventModal } from "./components/CreateEventModal";
 import "./App.css";
+
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  avatarUrl?: string;
+}
 
 interface EventLocation {
   city: string;
@@ -46,6 +55,9 @@ function App() {
   const [apiInfo, setApiInfo] = useState<ApiInfo | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
   const [mapboxToken, setMapboxToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showCreateEventModal, setShowCreateEventModal] = useState(false);
 
   useEffect(() => {
     // Check API connection
@@ -68,7 +80,39 @@ function App() {
       .then((res) => res.json())
       .then((data) => setEvents(data.events || []))
       .catch(() => {});
+
+    // Check if user is already logged in
+    fetch("/api/auth/me", { credentials: "include" })
+      .then((res) => {
+        if (res.ok) return res.json();
+        throw new Error("Not authenticated");
+      })
+      .then((data) => setUser(data.user))
+      .catch(() => {});
   }, []);
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    setUser(null);
+  };
+
+  const fetchEvents = () => {
+    fetch("/api/events")
+      .then((res) => res.json())
+      .then((data) => setEvents(data.events || []))
+      .catch(() => {});
+  };
+
+  const handleCreateEvent = () => {
+    if (!user) {
+      setShowAuthModal(true);
+    } else {
+      setShowCreateEventModal(true);
+    }
+  };
 
   // Transform events for the map
   const mapEvents = events
@@ -92,7 +136,21 @@ function App() {
             <a href="#map">Map</a>
             <a href="#events">Events</a>
             <a href="#about">About</a>
-            <button className="btn btn-primary">Sign In</button>
+            {user ? (
+              <div className="user-menu">
+                <span className="user-name">{user.name}</span>
+                <button className="btn btn-secondary" onClick={handleLogout}>
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => setShowAuthModal(true)}
+              >
+                Sign In
+              </button>
+            )}
           </nav>
         </div>
       </header>
@@ -106,10 +164,13 @@ function App() {
               Connect with the global acroyoga community.
             </p>
             <div className="hero-actions">
-              <button className="btn btn-large btn-primary">
+              <a href="#events" className="btn btn-large btn-primary">
                 Explore Events
-              </button>
-              <button className="btn btn-large btn-secondary">
+              </a>
+              <button
+                className="btn btn-large btn-secondary"
+                onClick={handleCreateEvent}
+              >
                 List Your Event
               </button>
             </div>
@@ -179,7 +240,9 @@ function App() {
           ) : (
             <div className="no-events">
               <p>No events yet. Be the first to add one!</p>
-              <button className="btn btn-primary">Create Event</button>
+              <button className="btn btn-primary" onClick={handleCreateEvent}>
+                Create Event
+              </button>
             </div>
           )}
         </section>
@@ -209,6 +272,19 @@ function App() {
           for the acroyoga community.
         </p>
       </footer>
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onAuthSuccess={(user) => setUser(user)}
+      />
+
+      <CreateEventModal
+        isOpen={showCreateEventModal}
+        onClose={() => setShowCreateEventModal(false)}
+        onEventCreated={fetchEvents}
+        mapboxToken={mapboxToken}
+      />
     </div>
   );
 }
