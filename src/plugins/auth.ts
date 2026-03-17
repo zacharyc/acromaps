@@ -1,10 +1,11 @@
 import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
+import fp from "fastify-plugin";
 import fastifyJwt from "@fastify/jwt";
 import fastifyCookie from "@fastify/cookie";
 import { config } from "../config.js";
 import type { JWTPayload } from "../types/index.js";
 
-export async function authPlugin(fastify: FastifyInstance) {
+async function authPluginCallback(fastify: FastifyInstance) {
   // Register cookie plugin
   await fastify.register(fastifyCookie);
 
@@ -68,6 +69,11 @@ export async function authPlugin(fastify: FastifyInstance) {
     }
   );
 }
+
+// Wrap with fastify-plugin to expose decorators outside encapsulation
+export const authPlugin = fp(authPluginCallback, {
+  name: "auth-plugin",
+});
 
 // Type augmentation for Fastify
 declare module "fastify" {
