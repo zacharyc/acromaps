@@ -73,13 +73,13 @@ function App() {
     fetch("/api/config")
       .then((res) => res.json())
       .then((data) => setMapboxToken(data.mapboxToken))
-      .catch(() => {});
+      .catch(() => { });
 
     // Fetch events
     fetch("/api/events")
       .then((res) => res.json())
       .then((data) => setEvents(data.events || []))
-      .catch(() => {});
+      .catch(() => { });
 
     // Check if user is already logged in
     fetch("/api/auth/me", { credentials: "include" })
@@ -88,7 +88,7 @@ function App() {
         throw new Error("Not authenticated");
       })
       .then((data) => setUser(data.user))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const handleLogout = async () => {
@@ -103,7 +103,7 @@ function App() {
     fetch("/api/events")
       .then((res) => res.json())
       .then((data) => setEvents(data.events || []))
-      .catch(() => {});
+      .catch(() => { });
   };
 
   const handleCreateEvent = () => {
