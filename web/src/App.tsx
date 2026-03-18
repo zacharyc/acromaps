@@ -156,44 +156,9 @@ function App() {
       </header>
 
       <main>
-        <section className="hero">
-          <div className="hero-content">
-            <h2>Find Acroyoga Events Near You</h2>
-            <p>
-              Discover classes, jams, festivals, and events in your area.
-              Connect with the global acroyoga community.
-            </p>
-            <div className="hero-actions">
-              <a href="#events" className="btn btn-large btn-primary">
-                Explore Events
-              </a>
-              <button
-                className="btn btn-large btn-secondary"
-                onClick={handleCreateEvent}
-              >
-                List Your Event
-              </button>
-            </div>
-            <div className="api-status">
-              {apiStatus === "loading" && (
-                <span className="status loading">Connecting to API...</span>
-              )}
-              {apiStatus === "connected" && (
-                <span className="status connected">
-                  API Connected: {apiInfo?.name} v{apiInfo?.version}
-                </span>
-              )}
-              {apiStatus === "error" && (
-                <span className="status error">
-                  API Offline - Start the server with `npm run dev`
-                </span>
-              )}
-            </div>
-          </div>
-        </section>
+
 
         <section className="map-section" id="map">
-          <h3>Events Around the World</h3>
           <EventMap events={mapEvents} mapboxToken={mapboxToken} />
         </section>
 
@@ -264,7 +229,45 @@ function App() {
             validity of your event on a schedule or it will be removed.
           </p>
         </section>
+
+        <section className="hero">
+          <div className="hero-content">
+            <h2>Find Acroyoga Events Near You</h2>
+            <p>
+              Discover classes, jams, festivals, and events in your area.
+              Connect with the global acroyoga community.
+            </p>
+            <div className="hero-actions">
+              <a href="#events" className="btn btn-large btn-primary">
+                Explore Events
+              </a>
+              <button
+                className="btn btn-large btn-secondary"
+                onClick={handleCreateEvent}
+              >
+                List Your Event
+              </button>
+            </div>
+            <div className="api-status">
+              {apiStatus === "loading" && (
+                <span className="status loading">Connecting to API...</span>
+              )}
+              {apiStatus === "connected" && (
+                <span className="status connected">
+                  API Connected: {apiInfo?.name} v{apiInfo?.version}
+                </span>
+              )}
+              {apiStatus === "error" && (
+                <span className="status error">
+                  API Offline - Start the server with `npm run dev`
+                </span>
+              )}
+            </div>
+          </div>
+        </section>
       </main>
+
+
 
       <footer className="footer">
         <p>
