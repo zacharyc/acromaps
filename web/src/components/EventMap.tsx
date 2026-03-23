@@ -39,6 +39,8 @@ export function EventMap({ events, mapboxToken }: EventMapProps) {
       style: "mapbox://styles/mapbox/streets-v12",
       center: [-90, 40],
       zoom: 3.5,
+      minZoom: 2,
+      maxZoom: 16,
     });
 
     map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
