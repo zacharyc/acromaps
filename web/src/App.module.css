@@ -1,0 +1,281 @@
+/* App Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--background-alt) 0%, var(--background) 100%);
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.apiStatus {
+  margin-top: 3rem;
+  font-size: 0.875rem;
+}
+
+.status {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: inline-block;
+}
+
+.statusLoading {
+  composes: status;
+  background: var(--secondary);
+  color: var(--text-light);
+}
+
+.statusConnected {
+  composes: status;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.statusError {
+  composes: status;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Sections */
+.section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section h3 {
+  font-size: 1.75rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Map Section */
+.mapSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Event Types Grid */
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.typeCard {
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.typeCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.typeCard h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.typeCard p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.typeCardClass {
+  composes: typeCard;
+  border-top: 3px solid var(--class-color);
+}
+
+.typeCardClass h4 {
+  color: var(--class-color);
+}
+
+.typeCardJam {
+  composes: typeCard;
+  border-top: 3px solid var(--jam-color);
+}
+
+.typeCardJam h4 {
+  color: var(--jam-color);
+}
+
+.typeCardFestival {
+  composes: typeCard;
+  border-top: 3px solid var(--festival-color);
+}
+
+.typeCardFestival h4 {
+  color: var(--festival-color);
+}
+
+.typeCardEvent {
+  composes: typeCard;
+  border-top: 3px solid var(--event-color);
+}
+
+.typeCardEvent h4 {
+  color: var(--event-color);
+}
+
+/* Events Grid */
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.eventCard {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  transition: box-shadow 0.2s;
+}
+
+.eventCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.eventTypeBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.badgeClass {
+  composes: eventTypeBadge;
+  background: #ede9fe;
+  color: var(--class-color);
+}
+
+.badgeJam {
+  composes: eventTypeBadge;
+  background: #dcfce7;
+  color: var(--jam-color);
+}
+
+.badgeFestival {
+  composes: eventTypeBadge;
+  background: #fef3c7;
+  color: var(--festival-color);
+}
+
+.badgeEvent {
+  composes: eventTypeBadge;
+  background: #dbeafe;
+  color: var(--event-color);
+}
+
+.eventCard h4 {
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.eventDate {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.eventLocation {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* No Events */
+.noEvents {
+  text-align: center;
+  padding: 3rem;
+  background: var(--background-alt);
+  border-radius: 1rem;
+}
+
+.noEvents p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+/* About */
+.about {
+  background: var(--background-alt);
+  border-radius: 1rem;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.about p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-light);
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.75rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+}

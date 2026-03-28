@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import styles from "./EventMap.module.css";
 
 interface EventLocation {
   id: string;
@@ -107,11 +108,11 @@ export function EventMap({ events, mapboxToken }: EventMapProps) {
 
   if (!mapboxToken) {
     return (
-      <div className="map-placeholder">
+      <div className={styles.mapPlaceholder}>
         <p>Map unavailable - Mapbox token not configured</p>
       </div>
     );
   }
 
-  return <div ref={mapContainer} className="event-map" />;
+  return <div ref={mapContainer} className={styles.eventMap} />;
 }

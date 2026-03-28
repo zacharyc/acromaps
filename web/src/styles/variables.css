@@ -1,0 +1,30 @@
+/* CSS Custom Properties */
+:root {
+  /* Primary Colors */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+
+  /* Secondary & Background */
+  --secondary: #f1f5f9;
+  --background: #ffffff;
+  --background-alt: #f8fafc;
+
+  /* Text Colors */
+  --text: #334155;
+  --text-light: #64748b;
+  --text-dark: #0f172a;
+
+  /* Border */
+  --border: #e2e8f0;
+
+  /* Status Colors */
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+
+  /* Event Type Colors */
+  --class-color: #8b5cf6;
+  --jam-color: #22c55e;
+  --festival-color: #f59e0b;
+  --event-color: #3b82f6;
+}

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { EventMap } from "./components/EventMap";
-import { AuthModal } from "./components/AuthModal";
-import { CreateEventModal } from "./components/CreateEventModal";
-import "./App.css";
+import { Header } from "./components/Header/Header";
+import { EventMap } from "./components/EventMap/EventMap";
+import { AuthModal } from "./components/AuthModal/AuthModal";
+import { CreateEventModal } from "./components/CreateEventModal/CreateEventModal";
+import styles from "./App.module.css";
 
 interface User {
   id: string;
@@ -46,6 +47,20 @@ const EVENT_TYPE_DESCRIPTIONS: Record<string, string> = {
   jam: "Practice with the community in open jam sessions",
   festival: "Multi-day gatherings celebrating acroyoga",
   event: "Workshops, performances, and special events",
+};
+
+const TYPE_CARD_STYLES: Record<string, string> = {
+  class: styles.typeCardClass,
+  jam: styles.typeCardJam,
+  festival: styles.typeCardFestival,
+  event: styles.typeCardEvent,
+};
+
+const BADGE_STYLES: Record<string, string> = {
+  class: styles.badgeClass,
+  jam: styles.badgeJam,
+  festival: styles.badgeFestival,
+  event: styles.badgeEvent,
 };
 
 function App() {
@@ -128,45 +143,23 @@ function App() {
     }));
 
   return (
-    <div className="app">
-      <header className="header">
-        <div className="header-content">
-          <h1 className="logo">Acromaps</h1>
-          <nav className="nav">
-            <a href="#map">Map</a>
-            <a href="#events">Events</a>
-            <a href="#about">About</a>
-            {user ? (
-              <div className="user-menu">
-                <span className="user-name">{user.name}</span>
-                <button className="btn btn-secondary" onClick={handleLogout}>
-                  Sign Out
-                </button>
-              </div>
-            ) : (
-              <button
-                className="btn btn-primary"
-                onClick={() => setShowAuthModal(true)}
-              >
-                Sign In
-              </button>
-            )}
-          </nav>
-        </div>
-      </header>
+    <div className={styles.app}>
+      <Header
+        user={user}
+        onLogout={handleLogout}
+        onSignIn={() => setShowAuthModal(true)}
+      />
 
       <main>
-
-
-        <section className="map-section" id="map">
+        <section className={styles.mapSection} id="map">
           <EventMap events={mapEvents} mapboxToken={mapboxToken} />
         </section>
 
-        <section className="event-types" id="events">
+        <section className={styles.section} id="events">
           <h3>Explore by Type</h3>
-          <div className="type-grid">
+          <div className={styles.typeGrid}>
             {Object.entries(EVENT_TYPE_LABELS).map(([type, label]) => (
-              <div key={type} className={`type-card ${type}`}>
+              <div key={type} className={TYPE_CARD_STYLES[type]}>
                 <h4>{label}</h4>
                 <p>{EVENT_TYPE_DESCRIPTIONS[type]}</p>
                 <button className="btn btn-outline">Browse {label}</button>
@@ -175,17 +168,17 @@ function App() {
           </div>
         </section>
 
-        <section className="upcoming-events">
+        <section className={styles.section}>
           <h3>Upcoming Events</h3>
           {events.length > 0 ? (
-            <div className="events-grid">
+            <div className={styles.eventsGrid}>
               {events.slice(0, 6).map((event) => (
-                <div key={event.id} className="event-card">
-                  <span className={`event-type-badge ${event.eventType}`}>
+                <div key={event.id} className={styles.eventCard}>
+                  <span className={BADGE_STYLES[event.eventType]}>
                     {EVENT_TYPE_LABELS[event.eventType]}
                   </span>
                   <h4>{event.title}</h4>
-                  <p className="event-date">
+                  <p className={styles.eventDate}>
                     {new Date(event.startDate).toLocaleDateString("en-US", {
                       weekday: "short",
                       month: "short",
@@ -193,7 +186,7 @@ function App() {
                     })}
                   </p>
                   {event.location && (
-                    <p className="event-location">
+                    <p className={styles.eventLocation}>
                       {event.location.venueName &&
                         `${event.location.venueName}, `}
                       {event.location.city}, {event.location.country}
@@ -203,7 +196,7 @@ function App() {
               ))}
             </div>
           ) : (
-            <div className="no-events">
+            <div className={styles.noEvents}>
               <p>No events yet. Be the first to add one!</p>
               <button className="btn btn-primary" onClick={handleCreateEvent}>
                 Create Event
@@ -212,7 +205,7 @@ function App() {
           )}
         </section>
 
-        <section className="about" id="about">
+        <section className={`${styles.section} ${styles.about}`} id="about">
           <h3>About Acromaps</h3>
           <p>
             This incarnation of Acromaps is was created to replace an older
@@ -230,14 +223,14 @@ function App() {
           </p>
         </section>
 
-        <section className="hero">
-          <div className="hero-content">
+        <section className={styles.hero}>
+          <div className={styles.heroContent}>
             <h2>Find Acroyoga Events Near You</h2>
             <p>
               Discover classes, jams, festivals, and events in your area.
               Connect with the global acroyoga community.
             </p>
-            <div className="hero-actions">
+            <div className={styles.heroActions}>
               <a href="#events" className="btn btn-large btn-primary">
                 Explore Events
               </a>
@@ -248,17 +241,17 @@ function App() {
                 List Your Event
               </button>
             </div>
-            <div className="api-status">
+            <div className={styles.apiStatus}>
               {apiStatus === "loading" && (
-                <span className="status loading">Connecting to API...</span>
+                <span className={styles.statusLoading}>Connecting to API...</span>
               )}
               {apiStatus === "connected" && (
-                <span className="status connected">
+                <span className={styles.statusConnected}>
                   API Connected: {apiInfo?.name} v{apiInfo?.version}
                 </span>
               )}
               {apiStatus === "error" && (
-                <span className="status error">
+                <span className={styles.statusError}>
                   API Offline - Start the server with `npm run dev`
                 </span>
               )}
@@ -267,9 +260,7 @@ function App() {
         </section>
       </main>
 
-
-
-      <footer className="footer">
+      <footer className={styles.footer}>
         <p>
           &copy; {new Date().getFullYear()} Acromaps. Made with &#x2764;&#xfe0f;
           for the acroyoga community.

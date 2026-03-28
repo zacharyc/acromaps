@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./AuthModal.module.css";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -128,7 +129,7 @@ export function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalProps) {
           </button>
         </form>
 
-        <div className="auth-switch">
+        <div className={styles.authSwitch}>
           {mode === "login" ? (
             <p>
               Don't have an account?{" "}
