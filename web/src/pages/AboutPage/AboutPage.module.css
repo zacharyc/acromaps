@@ -1,0 +1,81 @@
+.page {
+  padding: 3rem 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page h1 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.section p {
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.typeList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.typeItem {
+  padding: 1.5rem;
+  background: var(--background-alt);
+  border-radius: 0.75rem;
+}
+
+.typeItem h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.typeItem p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.typeClass {
+  color: var(--class-color);
+}
+
+.typeJam {
+  color: var(--jam-color);
+}
+
+.typeFestival {
+  color: var(--festival-color);
+}
+
+.typeEvent {
+  color: var(--event-color);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 2rem 1rem;
+  }
+
+  .page h1 {
+    font-size: 2rem;
+  }
+}

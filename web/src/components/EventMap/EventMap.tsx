@@ -25,6 +25,20 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
   event: "#3b82f6",
 };
 
+const EVENT_TYPE_LABELS: Record<string, string> = {
+  class: "Class",
+  jam: "Jam",
+  festival: "Festival",
+  event: "Event",
+};
+
+const EVENT_TYPE_BG: Record<string, string> = {
+  class: "#ede9fe",
+  jam: "#dcfce7",
+  festival: "#fef3c7",
+  event: "#dbeafe",
+};
+
 export function EventMap({ events, mapboxToken }: EventMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
@@ -77,12 +91,30 @@ export function EventMap({ events, mapboxToken }: EventMapProps) {
       el.style.boxShadow = "0 2px 8px rgba(0,0,0,0.3)";
       el.style.cursor = "pointer";
 
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
-        <div style="padding: 8px;">
-          <strong style="font-size: 14px;">${event.title}</strong>
-          <p style="margin: 4px 0 0; color: #666; font-size: 12px;">
+      const color = EVENT_TYPE_COLORS[event.eventType] || "#6366f1";
+      const bgColor = EVENT_TYPE_BG[event.eventType] || "#e0e7ff";
+      const label = EVENT_TYPE_LABELS[event.eventType] || "Event";
+
+      const popup = new mapboxgl.Popup({
+        offset: 25,
+        className: "event-popup",
+        maxWidth: "280px",
+      }).setHTML(`
+        <div class="event-popup-content">
+          <span class="event-popup-badge" style="background: ${bgColor}; color: ${color};">
+            ${label}
+          </span>
+          <h4 class="event-popup-title">${event.title}</h4>
+          <p class="event-popup-location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
             ${event.city}, ${event.country}
           </p>
+          <a href="/events/${event.id}" class="event-popup-link">
+            View Details →
+          </a>
         </div>
       `);
 

@@ -15,10 +15,15 @@
   align-items: center;
 }
 
+.logoLink {
+  text-decoration: none;
+}
+
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary);
+  margin: 0;
 }
 
 .nav {
@@ -36,6 +41,16 @@
 
 .nav a:hover {
   color: var(--primary);
+}
+
+.nav a.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 2px;
+}
+
+.createEventBtn {
+  margin-left: 0.5rem;
 }
 
 .userMenu {
