@@ -1,27 +1,41 @@
+import { Link, useLocation } from "react-router-dom";
+import type { User } from "../../types";
 import styles from "./Header.module.css";
-
-interface User {
-  id: string;
-  email: string;
-  name: string;
-  avatarUrl?: string;
-}
 
 interface HeaderProps {
   user: User | null;
   onLogout: () => void;
   onSignIn: () => void;
+  onCreateEvent: () => void;
 }
 
-export function Header({ user, onLogout, onSignIn }: HeaderProps) {
+export function Header({ user, onLogout, onSignIn, onCreateEvent }: HeaderProps) {
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        <h1 className={styles.logo}>Acromaps</h1>
+        <Link to="/" className={styles.logoLink}>
+          <h1 className={styles.logo}>Acromaps</h1>
+        </Link>
         <nav className={styles.nav}>
-          <a href="#map">Map</a>
-          <a href="#events">Events</a>
-          <a href="#about">About</a>
+          <Link to="/" className={isActive("/") ? styles.active : undefined}>
+            Map
+          </Link>
+          <Link to="/events" className={isActive("/events") ? styles.active : undefined}>
+            Events
+          </Link>
+          <Link to="/about" className={isActive("/about") ? styles.active : undefined}>
+            About
+          </Link>
+          <button
+            className={`btn btn-primary ${styles.createEventBtn}`}
+            onClick={onCreateEvent}
+          >
+            Create Event
+          </button>
           {user ? (
             <div className={styles.userMenu}>
               <span className={styles.userName}>{user.name}</span>
@@ -30,7 +44,7 @@ export function Header({ user, onLogout, onSignIn }: HeaderProps) {
               </button>
             </div>
           ) : (
-            <button className="btn btn-primary" onClick={onSignIn}>
+            <button className="btn btn-outline" onClick={onSignIn}>
               Sign In
             </button>
           )}

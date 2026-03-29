@@ -1,0 +1,65 @@
+.card {
+  display: block;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  transition: box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.badgeClass {
+  background: #ede9fe;
+  color: var(--class-color);
+}
+
+.badgeJam {
+  background: #dcfce7;
+  color: var(--jam-color);
+}
+
+.badgeFestival {
+  background: #fef3c7;
+  color: var(--festival-color);
+}
+
+.badgeEvent {
+  background: #dbeafe;
+  color: var(--event-color);
+}
+
+.title {
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.location {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}

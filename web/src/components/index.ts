@@ -2,3 +2,8 @@ export { Header } from "./Header/Header";
 export { EventMap } from "./EventMap/EventMap";
 export { AuthModal } from "./AuthModal/AuthModal";
 export { CreateEventModal } from "./CreateEventModal/CreateEventModal";
+export { Layout } from "./Layout/Layout";
+export { EventCard } from "./EventCard/EventCard";
+export { EventList } from "./EventList/EventList";
+export { EventTypeGrid } from "./EventTypeGrid/EventTypeGrid";
+export { EventFilter } from "./EventFilter/EventFilter";
