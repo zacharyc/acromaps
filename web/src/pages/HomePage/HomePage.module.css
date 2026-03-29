@@ -63,23 +63,24 @@
   color: #991b1b;
 }
 
-/* Map Section */
+/* Map Section - Full width */
 .mapSection {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
   width: 100%;
-  box-sizing: border-box;
-}
-
-.filterBar {
-  margin-bottom: 1rem;
+  position: relative;
 }
 
 .map {
-  border-radius: 0.75rem;
-  overflow: hidden;
-  border: 1px solid var(--border);
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+
+.filterBar {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
 }
 
 /* Sections */
@@ -128,7 +129,6 @@
     font-size: 1rem;
   }
 
-  .mapSection,
   .section {
     padding: 2rem 1rem;
   }
