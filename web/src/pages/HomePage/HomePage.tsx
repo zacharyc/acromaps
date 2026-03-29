@@ -22,13 +22,43 @@ export function HomePage() {
 
   return (
     <div className={styles.page}>
+      {/* Map Section */}
+      <section className={styles.mapSection}>
+        <div className={styles.map}>
+          <EventMap events={filteredMapEvents} mapboxToken={mapboxToken} />
+        </div>
+        <div className={styles.filterBar}>
+          <EventFilter
+            filters={mapFilters}
+            onFilterChange={setMapFilters}
+            variant="compact"
+          />
+        </div>
+      </section>
+
+      {/* Events Preview Section */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h3>Upcoming Events</h3>
+          <Link to="/events" className={styles.viewAllLink}>
+            View All Events →
+          </Link>
+        </div>
+        <EventList
+          events={previewEvents}
+          emptyMessage="No events yet. Be the first to add one!"
+          showCreateButton
+          onCreateEvent={handleCreateEvent}
+        />
+      </section>
+
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h2>Find Acroyoga Events Near You</h2>
           <p>
-            Discover classes, jams, festivals, and events in your area.
-            Connect with the global acroyoga community.
+            Discover classes, jams, festivals, and events in your area. Connect
+            with the global acroyoga community.
           </p>
           <div className={styles.heroActions}>
             <Link to="/events" className="btn btn-large btn-primary">
@@ -57,36 +87,6 @@ export function HomePage() {
             )}
           </div>
         </div>
-      </section>
-
-      {/* Map Section */}
-      <section className={styles.mapSection}>
-        <div className={styles.filterBar}>
-          <EventFilter
-            filters={mapFilters}
-            onFilterChange={setMapFilters}
-            variant="compact"
-          />
-        </div>
-        <div className={styles.map}>
-          <EventMap events={filteredMapEvents} mapboxToken={mapboxToken} />
-        </div>
-      </section>
-
-      {/* Events Preview Section */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h3>Upcoming Events</h3>
-          <Link to="/events" className={styles.viewAllLink}>
-            View All Events →
-          </Link>
-        </div>
-        <EventList
-          events={previewEvents}
-          emptyMessage="No events yet. Be the first to add one!"
-          showCreateButton
-          onCreateEvent={handleCreateEvent}
-        />
       </section>
     </div>
   );
