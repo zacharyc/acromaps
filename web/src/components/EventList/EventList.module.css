@@ -1,0 +1,17 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  background: var(--background-alt);
+  border-radius: 1rem;
+}
+
+.empty p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
