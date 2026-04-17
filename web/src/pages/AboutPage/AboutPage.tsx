@@ -25,9 +25,9 @@ export function AboutPage() {
           <p>
             One of the issues with the OG Acromaps was that events got stale.
             The goal of this site is to change that. There is a little bit of
-            overhead—you have to have an account to create an event—but events
-            will remain current because you will be prompted to confirm the
-            validity of your event on a schedule or it will be removed.
+            overhead — you have to have an account to create an event — but events
+            will remain current because you will be periodically prompted to confirm the
+            validity of your event or it will be removed.
           </p>
         </section>
 
